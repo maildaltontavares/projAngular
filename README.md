@@ -1,3 +1,8 @@
+Projeto desenvolvido em Angular
+
+Possui 1 crud com 2 detalhes e pesquisa dinamica em janela modal. Backend: PHP. Gerador de Relatórios: JasperReports.
+
+
 # Santech
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
