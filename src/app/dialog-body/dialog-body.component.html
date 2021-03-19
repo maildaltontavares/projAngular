@@ -1,0 +1,22 @@
+<mat-form-field class="example-form-field">
+    <mat-label>Clearable input</mat-label>
+    <input matInput type="text"  >   
+  </mat-form-field>
+ 
+   
+<mat-icon matSuffix >person</mat-icon>
+
+<h2 mat-dialog-title>Confirma deleção?</h2>
+
+<mat-dialog-content  class="mat-typography"> 
+    
+  
+    <p>An app's components typically define many views, arranged hierarchically. Angular provides
+    the Router service to help you define navigation paths among views. The router provides
+    sophisticated in-browser navigational capabilities.</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>  
+    <button mat-raised-button color="warn"  (click)="cancela()" >Cancelar</button>    
+    <button mat-raised-button color="primary"  (click)="confirma()">Sim</button> 
+</mat-dialog-actions>

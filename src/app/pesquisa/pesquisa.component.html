@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Pesquisa de Grupos</h2>
+<mat-dialog-content class="mat-typography"> 
+ 
+ <!-- <p>Grupo de usuários</p> -->
+
+  <mat-form-field class="example-full-width campo" class="espaco2" >
+    <mat-label>Digite o nome do grupo</mat-label>
+    <input matInput name="pesqNome" [(ngModel)]="pesqNome"   >
+  </mat-form-field>   
+
+
+ 
+
+    <button mat-icon-button  color="primary"  (click)="pesqByNamePag(-1)"  class="espacoCampo"  > <mat-icon>search</mat-icon></button>    
+  
+    <br>  
+
+    <label id="example-radio-group-label">Relação de Grupos</label>
+    <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="data.resultado">
+    <mat-radio-button class="example-radio-button" *ngFor="let iGrupo of aGrupos" [value]="iGrupo.id">
+             {{iGrupo.descricao}}     
+    </mat-radio-button>
+    </mat-radio-group>
+    <div>Código do Item Selecionado: {{data.resultado}}</div> 
+
+ 
+
+</mat-dialog-content> 
+
+
+<mat-dialog-actions align="end">
+
+  <button mat-raised-button class="espacoCampo" color="accent"  >    
+    <mat-icon>keyboard_arrow_left</mat-icon>    
+</button> 
+
+<button mat-raised-button   color="accent"    class="espacoCampo">   
+    <mat-icon>keyboard_arrow_right</mat-icon>    
+</button>   
+
+  <button mat-raised-button color="warn" (click)="onNoClick()" mat-dialog-close >Cancelar</button>    
+  <button mat-raised-button color="primary"  [mat-dialog-close]="data.resultado "   cdkFocusInitial>Confirmar</button>   
+  
+</mat-dialog-actions>

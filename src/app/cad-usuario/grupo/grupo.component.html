@@ -1,0 +1,58 @@
+ 
+<!--
+
+<mat-card>
+    <mat-card-content>
+
+
+      <section >
+          
+--> 
+
+         <mat-icon mat-list-icon >group</mat-icon>    
+
+          <mat-form-field class="form-field">
+             <input matInput placeholder="Grupo"  [(ngModel)]="vId" name="vId" (keydown.enter)="focusOutFunction($event)" (keydown.tab)="focusOutFunction($event)" > <!--(keydown.enter)="focusOutFunction($event)" (keydown.tab)="focusOutFunction($event)"-->
+          </mat-form-field>
+
+          <button mat-icon-button color="primary" (click)="pesqDialog()">  
+            <mat-icon>search</mat-icon>
+          </button> 
+          
+          
+          <mat-form-field class="form-field" *ngIf="vDescGrupo.length == 0"> 
+            <input matInput    disabled name="vDescricao1" [(ngModel)]="vDescricao1" [value]="vDescricao1">
+          </mat-form-field>  
+        
+          
+          <mat-form-field class="form-field" *ngFor= "let grp of vDescGrupo; let i=index">
+            <input matInput    disabled name="grp.descricao" [(ngModel)]="grp.descricao" [value]="grp.descricao" >
+          </mat-form-field>   
+<!--
+
+          <button mat-icon-button color="primary" (click)="edit()" >
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="primary" (click)="save()" >
+            <mat-icon>save</mat-icon>
+          </button>
+
+-->          
+          <button mat-icon-button color="warn" (click)="openDialog3()">
+            <mat-icon>delete</mat-icon>
+          </button>            
+ 
+  
+
+<!--
+      </section>
+
+
+ 
+    </mat-card-content>
+  </mat-card>
+  
+
+  -->
+  <br>
