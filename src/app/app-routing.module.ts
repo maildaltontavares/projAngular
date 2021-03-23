@@ -6,7 +6,7 @@ import { PrincipalComponent } from './principal/principal.component';
 
 const routes: Routes = [
   {path:'usuario',component:CadUsuarioComponent},
-  {path:'cadastro',component: CadastroXComponent},
+  {path:'producao',component: CadastroXComponent},
   {path:'principal',component: PrincipalComponent},
  
   {path:'',pathMatch:'full',redirectTo:'principal'}

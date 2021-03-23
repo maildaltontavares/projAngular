@@ -184,8 +184,8 @@ export class CadUsuarioComponent implements OnInit {
 
     console.log('Configura'); 
     this.usersService.getUsers().pipe(takeUntil(this.unsubscribe$)).subscribe((usrs) => this.aUsers = usrs); 
-    //this.usersService.getGrupos().pipe(takeUntil(this.unsubscribe$)).subscribe((grps) => this.aGrupo = grps); 
-    //this.filUserService.getUsuarioFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.filial.filiais = filiais); 
+    this.usersService.getGrupos().pipe(takeUntil(this.unsubscribe$)).subscribe((grps) => this.aGrupo = grps); 
+    this.filUserService.getUsuarioFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.filial.filiais = filiais); 
     this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais);   
     
     if(this.unsubscribe$){this.atualizaUsers();}

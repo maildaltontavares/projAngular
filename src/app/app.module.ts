@@ -30,7 +30,14 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {Md5} from 'ts-md5/dist/md5';
 import { CadastroXComponent } from './cadastro-x/cadastro-x.component';
-import { PrincipalComponent } from './principal/principal.component'; 
+import { PrincipalComponent } from './principal/principal.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
+
+
+
 
 @NgModule({
   declarations: [
@@ -42,7 +49,8 @@ import { PrincipalComponent } from './principal/principal.component';
     GrupoComponent,
     PesquisaComponent,
     CadastroXComponent,
-    PrincipalComponent 
+    PrincipalComponent ,    
+
     
   ],
   imports: [
@@ -67,7 +75,10 @@ import { PrincipalComponent } from './principal/principal.component';
     MatSidenavModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatSelectModule 
+    MatSelectModule ,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

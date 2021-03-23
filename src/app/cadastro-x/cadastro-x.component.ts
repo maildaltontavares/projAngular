@@ -24,7 +24,7 @@ export class CadastroXComponent implements OnInit {
 
         const file = new Blob([r], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
-        window.open(fileURL);
+        window.open(fileURL,"_self");
 
         console.error(this.vDtIni);
         console.error(this.vDtFim);
