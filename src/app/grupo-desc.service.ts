@@ -24,9 +24,7 @@ getDescGrupos(): Observable<Grupo[]> {
 
   if (!this.loaded_desc) {
 
-      //this.http.get<Grupo[]>(`http://localhost:8080/crudphp/view/wsGrupo.php?nome=ZZ`)   
-      this.http.get<Grupo[]>(`https://virtuax.herokuapp.com/view/wsGrupo.php?nome=ZZ`)   
-      
+      this.http.get<Grupo[]>(`http://localhost:8080/crudphp/view/wsGrupo.php?nome=ZZ`)     
       .pipe( 
         tap((grps) => console.log(' getDescGrupos')),
         tap((grps) => console.log(grps)),
@@ -40,8 +38,7 @@ getDescGrupos(): Observable<Grupo[]> {
 }
 
 getGrupoById(id:number): Observable<Grupo[]>  {  
-  //return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsGrupo.php?id=' + id.toString() +'&wscd=1')     
-  return this.http.get<Grupo[]>( 'https://virtuax.herokuapp.com/view/wsGrupo.php?id=' + id.toString() +'&wscd=1') 
+  return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsGrupo.php?id=' + id.toString() +'&wscd=1')     
       .pipe(
         tap((u) => { 
                 console.log('GrupoServiceId');   

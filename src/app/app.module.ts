@@ -28,16 +28,18 @@ import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {Md5} from 'ts-md5/dist/md5';
-import { CadastroXComponent } from './cadastro-x/cadastro-x.component';
-import { PrincipalComponent } from './principal/principal.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
-
-
-
+import { StoreModule} from '@ngrx/store';
+import { appReducers} from './store';
+import { CadastrosComponent } from './cadastros/cadastros.component';
+import { PersonComponent } from './cadastros/person/person.component';
+import { PrincipalComponent } from './principal/principal.component';
+import { RelatoriosComponent } from './relatorios/relatorios.component';
+import {StoreDevtoolsModule}   from '@ngrx/store-devtools';
+import { AuthModule } from './auth/auth.module';   
 
 @NgModule({
   declarations: [
@@ -48,8 +50,10 @@ import { environment } from 'src/environments/environment';
     SnackExemploComponent,
     GrupoComponent,
     PesquisaComponent,
-    CadastroXComponent,
-    PrincipalComponent ,    
+    CadastrosComponent,
+    PersonComponent,
+    PrincipalComponent,
+    RelatoriosComponent 
 
     
   ],
@@ -75,10 +79,16 @@ import { environment } from 'src/environments/environment';
     MatSidenavModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatSelectModule ,
+    MatSelectModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({maxAge:25}),
+    AuthModule,
+
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

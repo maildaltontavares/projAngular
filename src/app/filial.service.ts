@@ -18,8 +18,7 @@ export class FilialService {
 
     if (!this.loaded) {
 
-        //this.http.get<[]>(`http://localhost:8080/crudphp/view/wsFilial.php?wscd=1`)     
-        this.http.get<[]>(`https://virtuax.herokuapp.com/view/wsFilial.php?wscd=1`)    
+        this.http.get<[]>(`http://localhost:8080/crudphp/view/wsFilial.php?wscd=1`)     
         .pipe( 
           tap((filiais) => console.log(' getFilial')),
           tap((filiais) => console.log(filiais)),
@@ -35,18 +34,7 @@ export class FilialService {
   }
 
   
-  atualizaFilial(): Observable<FilialUsuario[]>  { 
 
-    //return this.http.get<[]>(`http://localhost:8080/crudphp/view/wsFilial.php?wscd=1`)
-    return this.http.get<[]>(`https://virtuax.herokuapp.com/view/wsFilial.php?wscd=1`)
-    
-      .pipe(
-        tap((u) => {
-          console.log('atualizaServiceFilial');
-        })
-
-      );   
-} 
 
 
 }

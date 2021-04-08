@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core'; 
-import { GeraRelatorioService } from '../gera-relatorio.service';
- 
+import { Component, OnInit } from '@angular/core';
+import { RelServiceService } from '../rel-service.service';
 
 @Component({
-  selector: 'app-cadastro-x',
-  templateUrl: './cadastro-x.component.html',
-  styleUrls: ['./cadastro-x.component.css']
+  selector: 'app-relatorios',
+  templateUrl: './relatorios.component.html',
+  styleUrls: ['./relatorios.component.css']
 })
-export class CadastroXComponent implements OnInit {
-
+export class RelatoriosComponent implements OnInit {
   vDtIni="";
   vDtFim="";
-  constructor(  private relService: GeraRelatorioService ) {   }
+  constructor(private relService: RelServiceService ) { }
 
   ngOnInit(): void {
   }
@@ -35,11 +33,7 @@ export class CadastroXComponent implements OnInit {
     //}
     
     );
-        
 
-  }
-
-
-
+  } 
 
 }

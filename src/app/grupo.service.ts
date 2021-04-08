@@ -20,8 +20,7 @@ export class GrupoService {
 
     if (!this.loaded) {
 
-        //this.http.get<[]>(`http://localhost:8080/crudphp/view/wsGrupo.php?nome=ZZ`)  
-        this.http.get<[]>(`https://virtuax.herokuapp.com/view/wsGrupo.php?nome=ZZ`)   
+        this.http.get<[]>(`http://localhost:8080/crudphp/view/wsGrupo.php?nome=ZZ`)     
         .pipe( 
           tap((grps) => console.log(' getGrupos')),
           tap((grps) => console.log(grps)),
@@ -38,8 +37,7 @@ export class GrupoService {
 
   getByName(pNome:String, pPagina:number): Observable<Grupo[]>  { 
 
-    //return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsGrupo.php?nome=' +  pNome + '&pagina=' + pPagina.toString() )     
-    return this.http.get<Grupo[]>('https://virtuax.herokuapp.com/view/wsGrupo.php?nome=' +  pNome + '&pagina=' + pPagina.toString() )     
+    return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsGrupo.php?nome=' +  pNome + '&pagina=' + pPagina.toString() )     
         .pipe(
           tap((u) => {
 

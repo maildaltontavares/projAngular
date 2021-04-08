@@ -1,4 +1,5 @@
-<!--
+ 
+  <!--
 <mat-drawer-container   [hasBackdrop]=true>
     <mat-drawer #drawer  class="largDrawer"> 
 
@@ -17,71 +18,86 @@
   -->
   <mat-toolbar color="primary"  >
   
-        <mat-toolbar-row>
-          <!--
-            <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
-              <mat-icon>menu</mat-icon>
-            </button>
-            -->
-            <span>Santech 2.0d</span>  
-            <span class="example-spacer"></span>   
-   
-            <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon">
-              <mat-icon>person</mat-icon>
-            </button> 
-  
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item>
-                <mat-icon>dialpad</mat-icon>
-                <span>Redial</span>
-              </button>
-              <button mat-menu-item disabled>
-                <mat-icon>voicemail</mat-icon>
-                <span>Check voice mail</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>notifications_off</mat-icon>
-                <span>Disable alerts</span>
-              </button>
-            </mat-menu>  
-  
-          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon>share</mat-icon>
+    <mat-toolbar-row>
+      <!--
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+          <mat-icon>menu</mat-icon>
+        </button>
+        -->
+        <span>Santech 2.0d</span>  
+        <span class="example-spacer"></span>   
+
+        <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon">
+          <mat-icon>person</mat-icon>
+        </button> 
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
           </button>
-  
-        </mat-toolbar-row> 
-  
-        <mat-toolbar-row>
-          <button mat-button [matMenuTriggerFor]="menuP">Menu ></button>
-          <mat-menu #menuP="matMenu">
-            <button mat-menu-item [matMenuTriggerFor]="cadastros">Cadastros</button>
-            <button mat-menu-item [matMenuTriggerFor]="relatorios">Relatórios</button>
-          </mat-menu>
-          
-          <mat-menu #cadastros="matMenu">
-            <button mat-menu-item routerLink="usuario"  routerLinkActive="mat-accent"  >Usuários</button> 
-          </mat-menu>
-          
-          <mat-menu #relatorios="matMenu">
-            <button mat-menu-item routerLink="producao"  routerLinkActive="mat-accent">Produção</button> 
-          </mat-menu> 
-  
-      </mat-toolbar-row>
-  
-  </mat-toolbar>  
-  
-  <router-outlet class="tamRouter"></router-outlet>
-          
-   
-<!--
-  
-  </mat-drawer-content>
-  </mat-drawer-container>
--->
+          <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>  
+
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+
+    </mat-toolbar-row> 
+
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="menuP">Menu ></button>
+      <mat-menu #menuP="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="cadastros">Cadastros</button>        
+        <button mat-menu-item [matMenuTriggerFor]="relatorios">Relatórios</button>
+        <button mat-menu-item [matMenuTriggerFor]="redux">Redux</button>
+        <button mat-menu-item [matMenuTriggerFor]="login">Login</button>
+        <button mat-menu-item [matMenuTriggerFor]="registro">Registro</button>
+         
+      </mat-menu>
+      
+      <mat-menu #cadastros="matMenu">
+        <button mat-menu-item routerLink="usuario"  routerLinkActive="mat-accent"  >Usuários</button> 
+      </mat-menu>
+     
+      <mat-menu #relatorios="matMenu">
+        <button mat-menu-item routerLink="relatorio"  routerLinkActive="mat-accent">Produção</button> 
+      </mat-menu> 
+
+      <mat-menu #redux="matMenu">
+        <button mat-menu-item routerLink="cadastros"  routerLinkActive="mat-accent">Redux NGRX</button> 
+      </mat-menu>       
+      <mat-menu #login="matMenu">
+        <button mat-menu-item routerLink="login"  routerLinkActive="mat-accent">Login</button> 
+      </mat-menu>    
+      <mat-menu #registro="matMenu">
+        <button mat-menu-item routerLink="registro"  routerLinkActive="mat-accent">Registro</button> 
+      </mat-menu>              
  
+  </mat-toolbar-row>
+
+</mat-toolbar>  
+
+<router-outlet class="tamRouter"></router-outlet>
 
 
-  
+      
+
+<!--
+
+</mat-drawer-content>
+</mat-drawer-container>
+-->
+
+
+

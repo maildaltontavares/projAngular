@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GeraRelatorioService } from './gera-relatorio.service';
+import { RelServiceService } from './rel-service.service';
 
-describe('GeraRelatorioService', () => {
-  let service: GeraRelatorioService;
+describe('RelServiceService', () => {
+  let service: RelServiceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GeraRelatorioService);
+    service = TestBed.inject(RelServiceService);
   });
 
   it('should be created', () => {

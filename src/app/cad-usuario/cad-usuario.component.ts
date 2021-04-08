@@ -14,7 +14,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';   
 import { FormBuilder,Validators ,FormGroup} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
-import { Md5 } from 'ts-md5';
  
  
 
@@ -79,10 +78,20 @@ export class CadUsuarioComponent implements OnInit {
   
  
   selected = 'Santana'; 
-  vFiliaisUsu:FilialUsuario[]=[];  
+  vFiliaisUsu:FilialUsuario[]=[];
+  /*
+    {id:1,nome:  'Santana'},
+    {id:2,nome:  'Nortex'},    
+    {id:8,nome:  'Textiles'}    
+  
+  ];
+*/
+  //aCodFilial: Filial=;
+ 
   vNum: string="";
-  passwordmd5: Md5 | undefined;
-  pwdAnterior: string="";  
+
+
+
   allComplete: boolean = false;
   todosMarcados: boolean = false;
    
@@ -187,8 +196,6 @@ export class CadUsuarioComponent implements OnInit {
     this.usersService.getGrupos().pipe(takeUntil(this.unsubscribe$)).subscribe((grps) => this.aGrupo = grps); 
     this.filUserService.getUsuarioFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.filial.filiais = filiais); 
     this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais);   
-    
-    if(this.unsubscribe$){this.atualizaUsers();}
    
   
   }
@@ -227,12 +234,6 @@ export class CadUsuarioComponent implements OnInit {
     },
     (err) => console.error(err)) ;      
 
-    this.filService.atualizaFilial().subscribe(
-      (filiais) => {  
-        this.vFiliaisUsu = filiais    
-    },
-    (err) => console.error(err)) ; 
-
        
   }
    
@@ -251,21 +252,6 @@ export class CadUsuarioComponent implements OnInit {
     console.log('this.aGrupoGrava'); 
     this.aGrupoGrava = this.aGrupo;
     console.log(this.aGrupoGrava); 
-
-    if(this.pwdAnterior == this.userForm.get('vPwd')?.value){
-      console.log('Mesma Senha..');
-    }
-    else{
-        console.log('Senha difere..');
-    }
-
-/*
-    const md5 = new Md5();
-    this.passwordmd5 = md5.appendStr('Hello');
-    console.log('md5');
-    console.log(this.passwordmd5);
-  */  
-    //console.log(Md5.hashStr('hello'));
     
     var i=0;  
     this.aCodGrupos=[];
@@ -439,7 +425,6 @@ export class CadUsuarioComponent implements OnInit {
 
      this.onEdit = true;
      this.onAlt  = true;
-     this.pwdAnterior =u1.senha;
    
     this.configuraFormUser(u1); 
 
@@ -469,14 +454,6 @@ export class CadUsuarioComponent implements OnInit {
         console.log(this.filial.filiais);           
     },
     (err) => console.error(err)) ;   
-
-    this.filService.atualizaFilial().subscribe(
-      (filiais) => {  
-        this.vFiliaisUsu = filiais    
-    },
-    (err) => console.error(err)) ; 
-
-    
  
    } 
 

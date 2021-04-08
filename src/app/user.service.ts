@@ -21,8 +21,8 @@ export class UserService {
 
     if (!this.loaded) {
 
-        //this.http.get<User[]>(`http://localhost:8080/crudphp/view/webServiceGet.php`)
-        this.http.get<User[]>(`https://virtuax.herokuapp.com/view/webServiceGet.php`)        
+        this.http.get<User[]>(`http://localhost:8080/crudphp/view/webServiceGet.php`)
+        //this.http.get<User[]>(`http://virtuax.herokuapp.com/view/webServiceGet.php`)        
         .pipe( 
           tap((usrs) => console.log(' getUsers')),
           tap((usrs) => console.log(usrs)),
@@ -37,8 +37,7 @@ export class UserService {
 
   getGrupos(): Observable<Grupo[]> { 
     if (!this.loaded_grp) { 
-        //this.http.get<Grupo[]>(`http://localhost:8080/crudphp/view/wsUser.php?id=9999&wscd=1`) 
-        this.http.get<Grupo[]>(`https://virtuax.herokuapp.com/view/wsUser.php?id=9999&wscd=1`) 
+        this.http.get<Grupo[]>(`http://localhost:8080/crudphp/view/wsUser.php?id=9999&wscd=1`) 
         .pipe( 
           tap((grps) => console.log(' getGrupos')),
           tap((grps) => console.log(grps)),
@@ -52,8 +51,7 @@ export class UserService {
   }
  
   getGrupoById(i:number): Observable<Grupo[]>  {  
-    //return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsUser.php?id=' + i.toString() + '&wscd=1' ) 
-    return this.http.get<Grupo[]>( 'https://virtuax.herokuapp.com/view/wsUser.php?id=' + i.toString() + '&wscd=1' ) 
+    return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsUser.php?id=' + i.toString() + '&wscd=1' ) 
     .pipe(
       tap((u) => {
       
@@ -64,8 +62,8 @@ export class UserService {
 
   addPost(d: User): Observable<any>  {  
        
-       //return this.http.post(`http://localhost:8080/crudphp/view/wsUser.php`,JSON.stringify({ d }) )
-        return this.http.post(`https://virtuax.herokuapp.com/view/wsUser.php`,JSON.stringify({ d }) )
+       return this.http.post(`http://localhost:8080/crudphp/view/wsUser.php`,JSON.stringify({ d }) )
+        //return this.http.post(`http://virtuax.herokuapp.com/view/wsUser.php`,JSON.stringify({ d }) )
        
         .pipe(
                map(
@@ -79,8 +77,7 @@ export class UserService {
   } 
  getByName(pNome:String,pEmail:string,pPagina:number): Observable<User[]>  { 
 
-    //return this.http.get<User[]>( 'http://localhost:8080/crudphp/view/wsUser.php?nome=' +  pNome + '&email=' + pEmail + '&pagina=' + pPagina.toString() )     
-    return this.http.get<User[]>( 'https://virtuax.herokuapp.com/view/wsUser.php?nome=' +  pNome + '&email=' + pEmail + '&pagina=' + pPagina.toString() )     
+    return this.http.get<User[]>( 'http://localhost:8080/crudphp/view/wsUser.php?nome=' +  pNome + '&email=' + pEmail + '&pagina=' + pPagina.toString() )     
         .pipe(
           tap((u) => {
                 
@@ -99,14 +96,14 @@ export class UserService {
 }
 
   getById(i:number): Observable<User>  {  
-   //return this.http.get<User>( 'http://localhost:8080/crudphp/view/wsUser.php?id=' + i.toString() )  
-   return this.http.get<User>( 'https://virtuax.herokuapp.com/view/wsUser.php?id=' + i.toString() ) 
+   return this.http.get<User>( 'http://localhost:8080/crudphp/view/wsUser.php?id=' + i.toString() )  
+   //return this.http.get<User>( 'http://virtuax.herokuapp.com/view/wsUser.php?id=' + i.toString() ) 
   }
 
   atualizaGrupos(): Observable<Grupo[]>  { 
  
-    //return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsUser.php?id=99999' ) 
-    return this.http.get<Grupo[]>(`https://virtuax.herokuapp.com/view/wsUser.php?id=99999` ) 
+    return this.http.get<Grupo[]>( 'http://localhost:8080/crudphp/view/wsUser.php?id=99999' ) 
+    //return this.http.get<User[]>(`http://virtuax.herokuapp.com/view/webServiceGet.php`)      
         .pipe(
           tap((u) => {
                   console.log('atualizaService');
@@ -118,8 +115,8 @@ export class UserService {
 
   atualizaUsers(): Observable<User[]>  { 
  
-    //return this.http.get<User[]>( 'http://localhost:8080/crudphp/view/wsUser.php' ) 
-    return this.http.get<User[]>(`https://virtuax.herokuapp.com/view/wsUser.php`)      
+    return this.http.get<User[]>( 'http://localhost:8080/crudphp/view/wsUser.php' ) 
+    //return this.http.get<User[]>(`http://virtuax.herokuapp.com/view/webServiceGet.php`)      
         .pipe(
           tap((u) => {
                   console.log('atualizaService'); 
@@ -130,8 +127,8 @@ export class UserService {
 
   delecao(pId:number): Observable<any> { 
  
-    //return this.http.delete( 'http://localhost:8080/crudphp/view/wsUser.php?id=' + pId.toString()) 
-      return this.http.delete( 'https://virtuax.herokuapp.com/view/wsUser.php?id=' + pId.toString()) 
+    return this.http.delete( 'http://localhost:8080/crudphp/view/wsUser.php?id=' + pId.toString()) 
+    //return this.http.delete( 'http://virtuax.herokuapp.com/view/wsUser.php?id=' + d.id.toString() )  
   
       .pipe( 
         tap((d)=> {
@@ -147,8 +144,8 @@ export class UserService {
 
   update(d: User): Observable<any>  {  
    
-    //return this.http.put<User>(`http://localhost:8080/crudphp/view/wsUser.php`,JSON.stringify({ d }) )
-     return this.http.put(`https://virtuax.herokuapp.com/view/wsUser.php`,JSON.stringify({ d }) )
+    return this.http.put<User>(`http://localhost:8080/crudphp/view/wsUser.php`,JSON.stringify({ d }) )
+     //return this.http.post(`http://virtuax.herokuapp.com/view/wsUser.php`,JSON.stringify({ d }) )
      .pipe(
               tap((d) => {
                 //let usrs = this.userSubject$.getValue();  
