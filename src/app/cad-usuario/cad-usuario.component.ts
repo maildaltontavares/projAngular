@@ -409,14 +409,13 @@ export class CadUsuarioComponent implements OnInit {
             } );  
     }
     else{
-      this.userForm = this.fb.group(
-        {
-          vNome:['',  [ Validators.required, Validators.minLength(5)]], //, Validators.pattern("^[a-zA-Z]+$") 
-          vPwd:['',[Validators.required]],
-          vEmail:['',[Validators.required, Validators.email]],    
-          vFilialPad:[0,[Validators.required]],
-        } );  
-
+          this.userForm = this.fb.group(
+            {
+              vNome:['',  [ Validators.required, Validators.minLength(5)]], //, Validators.pattern("^[a-zA-Z]+$") 
+              vPwd:['',[Validators.required]],
+              vEmail:['',[Validators.required, Validators.email]],    
+              vFilialPad:[0,[Validators.required]],
+            } );  
     }
 
   }  
