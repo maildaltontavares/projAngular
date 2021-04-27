@@ -43,9 +43,9 @@
             <mat-icon>voicemail</mat-icon>
             <span>Check voice mail</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="onLogout()"  >  
             <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
+            <span>logout</span>
           </button>
         </mat-menu>  
 
@@ -53,9 +53,11 @@
         <mat-icon>share</mat-icon>
       </button>
 
+      <button mat-button (click)="onLogout()" *ngIf="isLoggedIn$ | async">Logout</button>
+
     </mat-toolbar-row> 
 
-    <mat-toolbar-row>
+    <mat-toolbar-row   *ngIf="isLoggedIn$ | async">
       <button mat-button [matMenuTriggerFor]="menuP">Menu ></button>
       <mat-menu #menuP="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="cadastros">Cadastros</button>        

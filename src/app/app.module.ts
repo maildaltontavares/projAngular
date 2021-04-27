@@ -28,18 +28,21 @@ import { PesquisaComponent } from './pesquisa/pesquisa.component';
 import {MatRadioModule} from '@angular/material/radio'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire'; 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { StoreModule} from '@ngrx/store';
 import { appReducers} from './store';
 import { CadastrosComponent } from './cadastros/cadastros.component';
-import { PersonComponent } from './cadastros/person/person.component';
+import { PersonComponent } from './cadastros/person/person.component'; 
 import { PrincipalComponent } from './principal/principal.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import {StoreDevtoolsModule}   from '@ngrx/store-devtools';
-import { AuthModule } from './auth/auth.module';   
+import { AuthModule } from './auth/auth.module';
+import { LogonComponent } from './logon/logon.component';   
+ 
+
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { AuthModule } from './auth/auth.module';
     CadastrosComponent,
     PersonComponent,
     PrincipalComponent,
-    RelatoriosComponent 
+    RelatoriosComponent,
+    LogonComponent 
 
     
   ],

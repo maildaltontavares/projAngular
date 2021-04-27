@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackExemploComponent } from '../snack-exemplo/snack-exemplo.component'; 
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { User } from  '../../usuario.model';
-import {LoginService} from  '../../login.service';
- 
+import { AuthService } from '../auth/auth.service';
+import { User } from  '../usuario.model';
+import {LoginService} from  '../login.service'
+import { DOCUMENT } from '@angular/common';
  
 
 export interface Usr {  
@@ -14,13 +15,13 @@ export interface Usr {
 }
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-logon',
+  templateUrl: './logon.component.html',
+  styleUrls: ['./logon.component.css']
 })
+export class LogonComponent implements OnInit {
 
-export class LoginComponent implements OnInit {
-
+ 
   loginForm: FormGroup = this.fb.group({
     'email': ['', [Validators.required, Validators.email]],
     'senha': ['', [Validators.required, Validators.minLength(1)]],
@@ -36,14 +37,14 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router ,
     private _snackBar: MatSnackBar, 
-    private loginService: LoginService,
-      
+    private loginService: LoginService ,
+    @Inject(DOCUMENT) private document: Document
     ) { }
 
   ngOnInit(): void {
-      console.log('logout')  ;
-      this.authService.logout();
   }
+
+
 
   openSnackBar(msg:string) {
     this._snackBar.open(msg,'', {
@@ -81,8 +82,7 @@ export class LoginComponent implements OnInit {
                             if(this.pwdUser==this.pwdCripto)
                             {
                               console.log(this.router);
-                              this.authService.login(true);
-                              //this.router.navigateByUrl('principal'); 
+                              this.router.navigateByUrl('principal'); 
                             }
                             else
                             {
@@ -95,7 +95,8 @@ export class LoginComponent implements OnInit {
                         console.log('Erro');
                       }
                     }
-                  });  
+                  }); 
+
 
           }
         }, error: err => {
@@ -107,7 +108,6 @@ export class LoginComponent implements OnInit {
 
 
     }
-
 
 
 }

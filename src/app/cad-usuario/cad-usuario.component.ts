@@ -238,7 +238,7 @@ export class CadUsuarioComponent implements OnInit {
   }
    
   openSnackBar(msg:string) {
-    //this._snackBar.open(msg);
+    //this._snackBar.open(msg); 
     this._snackBar.openFromComponent(SnackExemploComponent, {
       duration: 1000,verticalPosition: 'bottom', // Allowed values are  'top' | 'bottom'
       horizontalPosition: 'center'
