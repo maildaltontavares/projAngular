@@ -22,7 +22,8 @@ export class RelatoriosComponent implements OnInit {
 
         const file = new Blob([r], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
-        window.open(fileURL,"_self");
+        //window.open(fileURL,"_self");
+        window.open(fileURL,"_blank");
 
         console.error(this.vDtIni);
         console.error(this.vDtFim);

@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-      console.log('logout')  ;
-      this.authService.logout();
+      //console.log('logout')  ;
+      //this.authService.logout();
   }
 
   openSnackBar(msg:string) {
@@ -61,11 +61,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
  
-      //console.log(this.userGrava.senha);  
-      //console.log(this.loginForm.get('email')?.value);
-
-      //
-
+     this.authService.login(true);
+     
+/*     
       this.loginService.validaLogin (this.loginForm.get('email')?.value,'').subscribe({
         next: (res) => {
           if (res) {
@@ -105,6 +103,7 @@ export class LoginComponent implements OnInit {
         }
       });
 
+*/       
 
     }
 
