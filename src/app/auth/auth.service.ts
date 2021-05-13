@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 export interface Usr {  
-  senha: string;
+  senha: string; 
   email:string;
 }
 

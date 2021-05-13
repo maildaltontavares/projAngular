@@ -2,6 +2,7 @@ import { Component, Inject  } from '@angular/core';
 import {MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
 import { Observable } from 'rxjs';
 import { AuthService } from './auth/auth.service';
+import  {NavService}  from './templates/nav/nav.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   
   title = 'santech';
   exibe = true;
-  constructor (private matDialog: MatDialog,private authService: AuthService){}   
+  constructor (private matDialog: MatDialog,private authService: AuthService,private NavService: NavService){}   
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
@@ -22,6 +23,12 @@ export class AppComponent {
 
   onLogout(){
     this.authService.logout();                      // {3}
+  }
+
+  alteraMenu(){
+   
+     this.NavService.mostraMenu(true); 
+
   }
 
 

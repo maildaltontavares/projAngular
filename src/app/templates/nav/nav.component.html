@@ -1,0 +1,121 @@
+<mat-sidenav-container class="container">   
+             
+            <mat-sidenav class="sidenav" mode="side"  opened  
+                fixedInViewport="true"  style="margin-top: 56px;"
+                *ngIf= "exibeMenu$ | async"  
+                >
+                <mat-nav-list class="nav-list"  >  
+
+                    <button mat-mini-fab color="warn"  (click)="alteraEstilo()" class="bt">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+
+                    <a mat-list-item  routerLink="/principal">
+                        <i class="material-icons">
+                            home
+                        </i>
+                        Início
+                    </a>
+
+
+                    <a mat-list-item  routerLink="/usuario">
+                        <i class="material-icons">
+                            storefront
+                        </i>
+                        Usuarios
+                    </a>
+
+                    <a mat-list-item  routerLink="/relatorio">
+                        <i class="material-icons">
+                            storefront
+                        </i>
+                        Relatórios
+                    </a>        
+                    
+                    <a mat-list-item  routerLink="/cadastros">
+                        <i class="material-icons">
+                            storefront
+                        </i>
+                        Redux NGRX
+                    </a>          
+                    <a mat-list-item  routerLink="/registro">
+                        <i class="material-icons">
+                            storefront
+                        </i>
+                        Registro
+                    </a>   
+                    <a mat-list-item  routerLink="/principal">
+                        <i class="material-icons">
+                            storefront
+                        </i>
+                        Principal
+                    </a>                       
+                    
+                    <a mat-list-item  (click)="onLogout()">
+                        <i class="material-icons">
+                            storefront
+                        </i>
+                        Sair
+                    </a>   
+                </mat-nav-list>
+            </mat-sidenav>   
+     
+
+    <mat-sidenav-content class="content">
+        <!--
+
+
+*ngIf="exibeMenu$ | async" 
+*ngIf="isLoggedIn$ | async" 
+
+
+        <mat-toolbar color="primary"  >
+         <mat-toolbar-row>
+            
+              <button mat-icon-button class="example-icon"   >
+                <mat-icon>menu</mat-icon>
+              </button>
+           
+              <span>Santech 2.0f</span>  
+              <span class="example-spacer"></span>   
+      
+              <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon">
+                <mat-icon>person</mat-icon>
+              </button> 
+      
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>dialpad</mat-icon>
+                  <span>Redial</span>
+                </button>
+                <button mat-menu-item disabled>
+                  <mat-icon>voicemail</mat-icon>
+                  <span>Check voice mail</span>
+                </button>
+                <button mat-menu-item (click)="onLogout()"  >  
+                  <mat-icon>notifications_off</mat-icon>
+                  <span>logout</span>
+                </button>
+              </mat-menu>  
+      
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+              <mat-icon>share</mat-icon>
+            </button>
+      
+      
+      
+          </mat-toolbar-row> 
+        </mat-toolbar>  
+
+
+
+
+           
+       -->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

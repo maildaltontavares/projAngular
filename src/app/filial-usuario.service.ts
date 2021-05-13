@@ -32,7 +32,7 @@ export class FilialUsuarioService {
 
     return this.filialUsuarioSubject$.asObservable(); 
 
-  }
+  } 
 
   getUsuarioFilialById(pid:number): Observable<Filial[]>  { 
 

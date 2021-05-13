@@ -14,7 +14,7 @@ export class FilialService {
   private loaded: boolean = false; 
   constructor(private http: HttpClient) { } 
  
-  getFilial(): Observable<FilialUsuario[]> {
+  getFilial(): Observable<FilialUsuario[]> { 
 
     if (!this.loaded) {
 

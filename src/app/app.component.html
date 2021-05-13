@@ -16,15 +16,16 @@
 <!--    </mat-drawer>
     <mat-drawer-content> 
   -->
+  
   <mat-toolbar color="primary"  >
   
     <mat-toolbar-row>
-      <!--
-        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+     
+        <button mat-icon-button class="example-icon" (click)="alteraMenu()"  *ngIf="isLoggedIn$ | async" >
           <mat-icon>menu</mat-icon>
         </button>
-        -->
-        <span>Santech 2.0e</span>  
+     
+        <span>Santech 2.0g</span>  
         <span class="example-spacer"></span>   
 
         <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon">
@@ -57,13 +58,13 @@
 
     </mat-toolbar-row> 
 
+    <!--
     <mat-toolbar-row   *ngIf="isLoggedIn$ | async">
       <button mat-button [matMenuTriggerFor]="menuP">Menu ></button>
       <mat-menu #menuP="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="cadastros">Cadastros</button>        
         <button mat-menu-item [matMenuTriggerFor]="relatorios">Relatórios</button>
         <button mat-menu-item [matMenuTriggerFor]="redux">Redux</button>
-        <button mat-menu-item [matMenuTriggerFor]="login">Login</button>
         <button mat-menu-item [matMenuTriggerFor]="registro">Registro</button>
         <button mat-menu-item [matMenuTriggerFor]="principal">Principal</button>
          
@@ -80,9 +81,7 @@
       <mat-menu #redux="matMenu">
         <button mat-menu-item routerLink="cadastros"  routerLinkActive="mat-accent">Redux NGRX</button> 
       </mat-menu>       
-      <mat-menu #login="matMenu">
-        <button mat-menu-item routerLink="login"  routerLinkActive="mat-accent">Login</button> 
-      </mat-menu>    
+  
       <mat-menu #registro="matMenu">
         <button mat-menu-item routerLink="registro"  routerLinkActive="mat-accent">Registro</button> 
       </mat-menu>              
@@ -91,15 +90,16 @@
       </mat-menu>         
  
   </mat-toolbar-row>
-
+-->
 </mat-toolbar>  
 
-<router-outlet class="tamRouter"></router-outlet>
 
+<app-nav></app-nav>
 
+<app-footer></app-footer>
       
-
-<!--
+<!--<router-outlet class="tamRouter"></router-outlet>
+ 
       <button mat-button (click)="onLogout()" *ngIf="isLoggedIn$ | async">Logout</button>
 </mat-drawer-content>
 </mat-drawer-container>

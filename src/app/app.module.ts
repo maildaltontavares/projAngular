@@ -40,7 +40,9 @@ import { PrincipalComponent } from './principal/principal.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import {StoreDevtoolsModule}   from '@ngrx/store-devtools';
 import { AuthModule } from './auth/auth.module';
-import { LogonComponent } from './logon/logon.component';   
+import { LogonComponent } from './logon/logon.component';
+import { FooterComponent } from './templates/footer/footer.component';
+import { NavComponent } from './templates/nav/nav.component';   
  
 
 
@@ -57,7 +59,9 @@ import { LogonComponent } from './logon/logon.component';
     PersonComponent,
     PrincipalComponent,
     RelatoriosComponent,
-    LogonComponent 
+    LogonComponent,
+    FooterComponent,
+    NavComponent 
 
     
   ],

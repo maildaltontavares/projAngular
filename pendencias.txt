@@ -1,0 +1,6 @@
+Gravar md5
+envio de email
+bloquear login crudphp -- ok
+adicionar extensoes email
+Menu Logout
+subir versao crudphp

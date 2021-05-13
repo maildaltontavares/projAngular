@@ -59,11 +59,13 @@ export class LoginComponent implements OnInit {
 
   };
 
+  
+
   onSubmit() {
  
-     this.authService.login(true);
+    // this.authService.login(true);
      
-/*     
+ 
       this.loginService.validaLogin (this.loginForm.get('email')?.value,'').subscribe({
         next: (res) => {
           if (res) {
@@ -103,7 +105,7 @@ export class LoginComponent implements OnInit {
         }
       });
 
-*/       
+        
 
     }
 

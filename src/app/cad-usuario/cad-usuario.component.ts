@@ -14,6 +14,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';   
 import { FormBuilder,Validators ,FormGroup} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
+import {LoginService} from  '../login.service'
  
  
 
@@ -55,6 +56,9 @@ export class CadUsuarioComponent implements OnInit {
   onAdd: boolean = false;
   onAlt: boolean = false; 
   userForm = this.fb.group({});    
+  senha="";
+  senhaAntiga="";
+  pwdCripto="";
   
   todasFiliais: Filial[] = [];
 
@@ -104,6 +108,7 @@ export class CadUsuarioComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private filService: FilialService,
+    private loginService: LoginService
     
     ) { }
   
@@ -195,8 +200,21 @@ export class CadUsuarioComponent implements OnInit {
     this.usersService.getUsers().pipe(takeUntil(this.unsubscribe$)).subscribe((usrs) => this.aUsers = usrs); 
     this.usersService.getGrupos().pipe(takeUntil(this.unsubscribe$)).subscribe((grps) => this.aGrupo = grps); 
     this.filUserService.getUsuarioFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.filial.filiais = filiais); 
-    this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais);   
-   
+    this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais); 
+/*
+    this.loginService.cripto ('1', '1').subscribe({
+      next: (res) => {
+        if (res) {
+              console.log('Cripto >> ' + res.senha); 
+              this.pwdCripto = ""; 
+        }
+      }, error: err => {
+        if (err != null  ) {
+          console.log('Erro criptografando senha');
+        }
+      }
+    });    
+ */
   
   }
 
@@ -206,8 +224,8 @@ export class CadUsuarioComponent implements OnInit {
 
   onSubmit(){
         console.log('METODO SUBMIT');
-        if(!this.vExcluir){
-          this.save();
+        if(!this.vExcluir){  
+            this.save(); 
         }        
   }     
 
@@ -234,6 +252,9 @@ export class CadUsuarioComponent implements OnInit {
     },
     (err) => console.error(err)) ;      
 
+    console.log('Carrega Filiais');
+
+    this.filService.getFilial().subscribe((filiais) => this.vFiliaisUsu = filiais); 
        
   }
    
@@ -251,8 +272,8 @@ export class CadUsuarioComponent implements OnInit {
     
     console.log('this.aGrupoGrava'); 
     this.aGrupoGrava = this.aGrupo;
-    console.log(this.aGrupoGrava); 
-    
+    //console.log(this.aGrupoGrava);  
+     
     var i=0;  
     this.aCodGrupos=[];
     while (i < this.aGrupoGrava.length){ 
@@ -265,21 +286,58 @@ export class CadUsuarioComponent implements OnInit {
 
     } 
     //console.log(this.aCodGrupos);
-    console.log(this.vId);
+   // console.log(this.vId);
 
     //Alteração
 
     i=0; 
 
     this.aCodFilial.filiais=this.filial.filiais;
-    console.log('this.aCodFilial.filiais');
-    console.log(this.aCodFilial.filiais );  
+   // console.log('this.aCodFilial.filiais');
+   // console.log(this.aCodFilial.filiais );  
 
     if ( this.onAlt || !this.vExcluir) {   
-            
-      console.log('Altera');
+ 
+   
+      if (this.senhaAntiga == this.userForm.get('vPwd')?.value){
+            this.senha = this.senhaAntiga; 
+      }
+      else{
+            this.senha = this.userForm.get('vPwd')?.value;  
+            this.senhaAntiga = this.senha ;
+      }
 
-      this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.userForm.get('vPwd')?.value,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
+      i=0;      
+      //this.pwdCripto = ""; 
+
+     // while ((this.pwdCripto == "")  && (i < 3)) {
+
+            this.loginService.cripto (this.userForm.get('vEmail')?.value, this.senha).subscribe({
+              next: (res) => {
+                if (res) {
+                      console.log('Cripto >> ' + res.senha); 
+                      this.pwdCripto = res.senha; 
+                }
+              }, error: err => {
+                if (err != null  ) {
+                  console.log('Erro criptografando senha');
+                }
+              }
+            });  
+
+            i++;
+            console.log(i);
+            console.log("Cripto Grava >> " + this.pwdCripto);
+             
+    //}
+      
+      
+      console.log('Altera');
+      console.log('Senha >> ' + this.senha);
+      console.log('Senha Cripto 123 >> ' + this.pwdCripto);
+
+      //this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.userForm.get('vPwd')?.value,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
+      this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.pwdCripto,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
       console.log(this.userGrava); 
 
       this.usersService.update(this.userGrava)
@@ -297,11 +355,37 @@ export class CadUsuarioComponent implements OnInit {
     
     }
   
-    this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,"id":0,"nome": this.userForm.get('vNome')?.value,"senha":this.userForm.get('vPwd')?.value,"email":this.userForm.get('vEmail')?.value,"tel":"999","filpad":this.userForm.get('vFilialPad')?.value };
+    //this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,"id":0,"nome": this.userForm.get('vNome')?.value,"senha":this.userForm.get('vPwd')?.value,"email":this.userForm.get('vEmail')?.value,"tel":"999","filpad":this.userForm.get('vFilialPad')?.value };
     //console.log(this.userGrava); 
 
     //Inclusão
     if( this.onAdd) {
+
+
+      this.senha = this.userForm.get('vPwd')?.value;  
+      this.senhaAntiga = this.senha;
+
+      console.log('Incluir');
+      console.log('Senha >> ' + this.senha);
+      
+
+      this.loginService.cripto (this.userForm.get('vEmail')?.value, this.senha).subscribe({
+        next: (res) => {
+          if (res) {
+                console.log( res); 
+                this.pwdCripto = res.senha; 
+          }
+        }, error: err => {
+          if (err != null  ) {
+            console.log('Erro criptografando senha');
+          }
+        }
+      });   
+
+      console.log('Senha Cripto >> ' + this.pwdCripto);   
+
+      this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,"id":0,"nome": this.userForm.get('vNome')?.value,"senha":this.pwdCripto,"email":this.userForm.get('vEmail')?.value,"tel":"999","filpad":this.userForm.get('vFilialPad')?.value };      
+
       this.usersService.addPost(this.userGrava)
         .subscribe(
           (usr) => { 
@@ -406,7 +490,14 @@ export class CadUsuarioComponent implements OnInit {
               vEmail:[u1.email,[Validators.required, Validators.email]],
               vFilialPad:[u1.filpad,[Validators.required]],
         
-            } );  
+            } );
+
+          
+            this.senhaAntiga = this.userForm.get('vPwd')?.value;
+            console.log('senhaAntiga:' + this.senhaAntiga); 
+            
+            
+
     }
     else{
           this.userForm = this.fb.group(
@@ -468,8 +559,8 @@ delecao(pId:number){
  
   ngOnDestroy() {
     console.log('Unsubscribe');
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+   // this.unsubscribe$.next();
+    //this.unsubscribe$.complete();
 
   }
 
