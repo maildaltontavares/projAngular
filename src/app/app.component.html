@@ -1,21 +1,5 @@
  
-  <!--
-<mat-drawer-container   [hasBackdrop]=true>
-    <mat-drawer #drawer  class="largDrawer"> 
-
-      <button mat-icon-button (click)="drawer.toggle()" color="primary">
-        <mat-icon>close</mat-icon>
-      </button> 
-
-      <br>
-      Santech 3.0
-      
-      <br> 
-
-    -->
-<!--    </mat-drawer>
-    <mat-drawer-content> 
-  -->
+  <!-- 
   
   <mat-toolbar color="primary"  >
   
@@ -26,28 +10,29 @@
         </button>
      
         <span>Santech 2.0g</span>  
-        <span class="example-spacer"></span>   
-
-        <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon">
-          <mat-icon>person</mat-icon>
-        </button> 
+        <span class="example-spacer"></span>    
+   
 
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          <mat-icon>more_vert</mat-icon>
+          <mat-icon>person</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
+          <button mat-menu-item routerLink="/registro">
+            <mat-icon>group</mat-icon>
+            <span>Cadastre-se</span>
           </button>
-          <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voice mail</span>
+          <button mat-menu-item disabled >
+            <mat-icon>email</mat-icon>
+            <span>Esqueceu a senha</span>
           </button>
-          <button mat-menu-item (click)="onLogout()"  >  
+          <button mat-menu-item (click)="onLogout()"  *ngIf="isLoggedIn$ | async" >  
             <mat-icon>notifications_off</mat-icon>
             <span>logout</span>
           </button>
+          <button mat-menu-item routerLink="/login"  *ngIf="!(isLoggedIn$ | async)" >  
+            <mat-icon>notifications_in</mat-icon>
+            <span>login</span>
+          </button>          
         </mat-menu>  
 
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
@@ -58,7 +43,23 @@
 
     </mat-toolbar-row> 
 
-    <!--
+</mat-toolbar>  
+
+-->
+
+<app-nav></app-nav>
+
+<app-footer></app-footer>
+      
+<!--<router-outlet class="tamRouter"></router-outlet>
+ 
+      <button mat-button (click)="onLogout()" *ngIf="isLoggedIn$ | async">Logout</button>
+</mat-drawer-content>
+</mat-drawer-container>
+
+
+
+    
     <mat-toolbar-row   *ngIf="isLoggedIn$ | async">
       <button mat-button [matMenuTriggerFor]="menuP">Menu ></button>
       <mat-menu #menuP="matMenu">
@@ -91,19 +92,4 @@
  
   </mat-toolbar-row>
 -->
-</mat-toolbar>  
-
-
-<app-nav></app-nav>
-
-<app-footer></app-footer>
-      
-<!--<router-outlet class="tamRouter"></router-outlet>
  
-      <button mat-button (click)="onLogout()" *ngIf="isLoggedIn$ | async">Logout</button>
-</mat-drawer-content>
-</mat-drawer-container>
--->
-
-
-

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { User } from  '../../usuario.model';
 import {LoginService} from  '../../login.service';
+import  {NavService}  from  '../../templates/nav/nav.service';
  
  
 
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
     private router: Router ,
     private _snackBar: MatSnackBar, 
     private loginService: LoginService,
+    private navService: NavService
       
     ) { }
 
@@ -82,6 +84,7 @@ export class LoginComponent implements OnInit {
                             {
                               console.log(this.router);
                               this.authService.login(true);
+                              this.navService.escondeMenu();
                               //this.router.navigateByUrl('principal'); 
                             }
                             else

@@ -1,13 +1,13 @@
 <mat-sidenav-container class="container">   
              
             <mat-sidenav class="sidenav" mode="side"  opened  
-                fixedInViewport="true"  style="margin-top: 56px;"
-                *ngIf= "exibeMenu$ | async"  
+                fixedInViewport="true"  
+                *ngIf= "((exibeMenu$ | async) && (isLoggedIn$ | async))"    
                 >
                 <mat-nav-list class="nav-list"  >  
 
-                    <button mat-mini-fab color="warn"  (click)="alteraEstilo()" class="bt">
-                        <mat-icon>close</mat-icon>
+                    <button mat-mini-fab color="warn"  (click)="alteraEstilo()"  >
+                        <mat-icon>arrow_back</mat-icon>
                     </button>
 
 
@@ -21,40 +21,34 @@
 
                     <a mat-list-item  routerLink="/usuario">
                         <i class="material-icons">
-                            storefront
+                          supervised_user_circle
                         </i>
                         Usuarios
                     </a>
 
                     <a mat-list-item  routerLink="/relatorio">
                         <i class="material-icons">
-                            storefront
+                          filter_none
                         </i>
                         Relatórios
                     </a>        
                     
                     <a mat-list-item  routerLink="/cadastros">
                         <i class="material-icons">
-                            storefront
+                          domain
                         </i>
                         Redux NGRX
                     </a>          
                     <a mat-list-item  routerLink="/registro">
                         <i class="material-icons">
-                            storefront
+                          group
                         </i>
                         Registro
-                    </a>   
-                    <a mat-list-item  routerLink="/principal">
-                        <i class="material-icons">
-                            storefront
-                        </i>
-                        Principal
-                    </a>                       
+                    </a>    
                     
                     <a mat-list-item  (click)="onLogout()">
                         <i class="material-icons">
-                            storefront
+                          exit_to_app
                         </i>
                         Sair
                     </a>   
@@ -63,59 +57,52 @@
      
 
     <mat-sidenav-content class="content">
-        <!--
 
-
-*ngIf="exibeMenu$ | async" 
-*ngIf="isLoggedIn$ | async" 
-
-
-        <mat-toolbar color="primary"  >
-         <mat-toolbar-row>
-            
-              <button mat-icon-button class="example-icon"   >
-                <mat-icon>menu</mat-icon>
-              </button>
-           
-              <span>Santech 2.0f</span>  
-              <span class="example-spacer"></span>   
-      
-              <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon">
-                <mat-icon>person</mat-icon>
-              </button> 
-      
-              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>dialpad</mat-icon>
-                  <span>Redial</span>
-                </button>
-                <button mat-menu-item disabled>
-                  <mat-icon>voicemail</mat-icon>
-                  <span>Check voice mail</span>
-                </button>
-                <button mat-menu-item (click)="onLogout()"  >  
-                  <mat-icon>notifications_off</mat-icon>
-                  <span>logout</span>
-                </button>
-              </mat-menu>  
-      
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-              <mat-icon>share</mat-icon>
+      <mat-toolbar color="primary"  >
+  
+        <mat-toolbar-row>
+         
+            <button mat-icon-button class="example-icon" (click)="exibeMenu()"  *ngIf= "((!(exibeMenu$ | async))  ) && (isLoggedIn$ | async)"   >
+              <mat-icon>menu</mat-icon>
             </button>
-      
-      
-      
-          </mat-toolbar-row> 
-        </mat-toolbar>  
+         
+            <span>Santech 2.0h</span>  
+            <span class="example-spacer"></span>    
+       
+    
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>person</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/registro">
+                <mat-icon>group</mat-icon>
+                <span>Cadastre-se</span>
+              </button>
+              <button mat-menu-item disabled >
+                <mat-icon>email</mat-icon>
+                <span>Esqueceu a senha</span>
+              </button>
+              <button mat-menu-item (click)="onLogout()"  *ngIf="isLoggedIn$ | async" >  
+                <mat-icon>notifications_off</mat-icon>
+                <span>logout</span>
+              </button>
+              <button mat-menu-item routerLink="/login"  *ngIf="!(isLoggedIn$ | async)" >  
+                <mat-icon>notifications_in</mat-icon>
+                <span>login</span>
+              </button>          
+            </mat-menu>  
+    
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+          </button>
+    
+    
+    
+        </mat-toolbar-row> 
+    
+    </mat-toolbar>  
 
 
-
-
-           
-       -->
-        <router-outlet></router-outlet>
+        <router-outlet class="alinha"></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

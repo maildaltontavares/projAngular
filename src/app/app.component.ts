@@ -12,13 +12,15 @@ import  {NavService}  from './templates/nav/nav.service';
 export class AppComponent {
 
   isLoggedIn$: Observable<boolean> = new Observable();                // {1}
+  exibeMenu$: Observable<boolean> = new Observable();  
   
   title = 'santech';
   exibe = true;
-  constructor (private matDialog: MatDialog,private authService: AuthService,private NavService: NavService){}   
+  constructor (private matDialog: MatDialog,private authService: AuthService,private navService: NavService){}   
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn; // {2}
+    this.exibeMenu$  = this.navService.exibirMenu;
   }
 
   onLogout(){
@@ -27,7 +29,7 @@ export class AppComponent {
 
   alteraMenu(){
    
-     this.NavService.mostraMenu(true); 
+     this.navService.mostraMenu(true); 
 
   }
 

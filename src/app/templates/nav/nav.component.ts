@@ -41,6 +41,13 @@ export class NavComponent implements OnInit {
     this.navService.escondeMenu();
   }
 
+  exibeMenu(){
+    //this.estilo= !this.estilo; 
+    //this.estilo= 
+     
+    this.navService.mostraMenu(true);
+  }
+
 
 
 }

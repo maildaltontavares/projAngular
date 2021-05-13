@@ -14,7 +14,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { DialogContentExampleDialogComponent } from '../dialog-content-example-dialog/dialog-content-example-dialog.component';   
 import { FormBuilder,Validators ,FormGroup} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
-import {LoginService} from  '../login.service'
+import {LoginService} from  '../login.service';
+import {NavService} from '../templates/nav/nav.service';
  
  
 
@@ -88,7 +89,7 @@ export class CadUsuarioComponent implements OnInit {
     {id:2,nome:  'Nortex'},    
     {id:8,nome:  'Textiles'}    
   
-  ];
+  ]; 
 */
   //aCodFilial: Filial=;
  
@@ -108,7 +109,8 @@ export class CadUsuarioComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private filService: FilialService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private navService: NavService
     
     ) { }
   
@@ -116,6 +118,7 @@ export class CadUsuarioComponent implements OnInit {
   ngOnInit(): void {  
     console.log('Init'); 
     this.configura();  
+    this.navService.escondeMenu();
   } 
 
   ngAfterViewInit() {
@@ -559,8 +562,8 @@ delecao(pId:number){
  
   ngOnDestroy() {
     console.log('Unsubscribe');
-   // this.unsubscribe$.next();
-    //this.unsubscribe$.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
 
   }
 
