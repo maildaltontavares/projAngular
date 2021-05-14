@@ -30,11 +30,11 @@ export class FilialUsuarioService {
         this.loaded = true;
     }
 
-    return this.filialUsuarioSubject$.asObservable(); 
+    return this.filialUsuarioSubject$.asObservable();  
 
   } 
 
-  getUsuarioFilialById(pid:number): Observable<Filial[]>  { 
+  getUsuarioFilialById(pid:number): Observable<Filial[]>  {  
 
        // return this.http.get<Filial[]>( 'http://localhost:8080/crudphp/view/wsUser.php?id=' +   pid.toString() +   '&wscd=3'  ) 
        return this.http.get<Filial[]>( 'https://virtuax.herokuapp.com/view/wsUser.php?id=' +   pid.toString() +   '&wscd=3'  ) 

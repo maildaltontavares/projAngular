@@ -1,5 +1,10 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { RelServiceService } from '../rel-service.service';
+import {NavService} from '../templates/nav/nav.service';
+
+ 
+
 
 @Component({
   selector: 'app-relatorios',
@@ -9,11 +14,18 @@ import { RelServiceService } from '../rel-service.service';
 export class RelatoriosComponent implements OnInit {
   vDtIni="";
   vDtFim="";
-  constructor(private relService: RelServiceService ) { }
+  constructor(private relService: RelServiceService ,
+    private navService: NavService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+        
+  }
+  ngAfterViewInit() {
+    this.navService.escondeMenu(); 
   }
 
+
+  
   geraReport(){
  
       
@@ -22,8 +34,8 @@ export class RelatoriosComponent implements OnInit {
 
         const file = new Blob([r], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
-        //window.open(fileURL,"_self");
-        window.open(fileURL,"_blank");
+        window.open(fileURL,"_self");
+        //window.open(fileURL,"_blank");
 
         console.error(this.vDtIni);
         console.error(this.vDtFim);

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
   openSnackBar(msg:string) {
     this._snackBar.open(msg,'', {
-            duration: 3000,verticalPosition: 'bottom', 
+            duration: 3000,verticalPosition: 'top', 
              horizontalPosition: 'center',
              
            });

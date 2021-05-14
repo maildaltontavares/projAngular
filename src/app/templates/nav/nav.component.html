@@ -1,4 +1,4 @@
-<mat-sidenav-container class="container">   
+<mat-sidenav-container class="container" >    
              
             <mat-sidenav class="sidenav" mode="side"  opened  
                 fixedInViewport="true"  
@@ -6,7 +6,16 @@
                 >
                 <mat-nav-list class="nav-list"  >  
 
-                    <button mat-mini-fab color="warn"  (click)="alteraEstilo()"  >
+                    <!--
+                    <a   routerLink="/principal"><img src="src/app/imagens/logoSantana2.jpg" width="150" height="60">  </a> 
+
+                    <br>
+                    <mat-divider></mat-divider>
+                    -->
+
+
+
+                    <button mat-mini-fab color="warn"  (click)="alteraEstilo()">
                         <mat-icon>arrow_back</mat-icon>
                     </button>
 
@@ -19,38 +28,42 @@
                     </a>
 
 
-                    <a mat-list-item  routerLink="/usuario">
+                    <a mat-list-item  routerLink="/usuario" (click)='alteraEstilo()'>
                         <i class="material-icons">
                           supervised_user_circle
                         </i>
                         Usuarios
                     </a>
 
-                    <a mat-list-item  routerLink="/relatorio">
+
+                    
+                    <a mat-list-item  routerLink="/relatorio"  (click)='alteraEstilo()'  >
                         <i class="material-icons">
                           filter_none
                         </i>
                         Relatórios
-                    </a>        
-                    
-                    <a mat-list-item  routerLink="/cadastros">
+                    </a>  
+                          
+                    <!--
+                    <a mat-list-item  routerLink="/cadastros" >
                         <i class="material-icons">
                           domain
                         </i>
                         Redux NGRX
-                    </a>          
-                    <a mat-list-item  routerLink="/registro">
+                    </a>         
+                    --> 
+                    <a mat-list-item  routerLink="/registro" (click)='alteraEstilo()'>
                         <i class="material-icons">
                           group
                         </i>
                         Registro
                     </a>    
-                    
+                    <mat-divider></mat-divider>
                     <a mat-list-item  (click)="onLogout()">
                         <i class="material-icons">
                           exit_to_app
                         </i>
-                        Sair
+                        Logout
                     </a>   
                 </mat-nav-list>
             </mat-sidenav>   
@@ -74,7 +87,7 @@
               <mat-icon>person</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item routerLink="/registro">
+              <button mat-menu-item routerLink="/registro" disabled >
                 <mat-icon>group</mat-icon>
                 <span>Cadastre-se</span>
               </button>

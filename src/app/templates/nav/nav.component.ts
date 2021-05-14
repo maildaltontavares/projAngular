@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService} from  '../../auth/auth.service'
+import { AuthService} from  '../../auth/auth.service' 
 import { NavService} from '../nav/nav.service'; 
 
 @Component({

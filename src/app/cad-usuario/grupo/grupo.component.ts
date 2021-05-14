@@ -139,7 +139,7 @@ export class GrupoComponent implements OnInit {
   openSnackBar(msg:string) {
     //this._snackBar.open(msg);
     this._snackBar.openFromComponent(SnackExemploComponent, {
-      duration: 2000,verticalPosition: 'bottom', // Allowed values are  'top' | 'bottom'
+      duration: 2000,verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
       horizontalPosition: 'center'
     }
     );

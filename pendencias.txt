@@ -1,6 +1,5 @@
+Observables
 Gravar md5
-envio de email
-bloquear login crudphp -- ok
-adicionar extensoes email
-Menu Logout
+envio de email 
+adicionar extensoes email 
 subir versao crudphp

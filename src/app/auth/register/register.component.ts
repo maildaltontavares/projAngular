@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import  {NavService}   from '../../templates/nav/nav.service';
 
 
 @Component({
@@ -31,9 +32,13 @@ export class RegisterComponent implements OnInit {
   constructor(    private fb: FormBuilder,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    private navService: NavService
+    ) { }
 
   ngOnInit(): void {
+
+    this.navService.escondeMenu();
   }
 
   matchingPasswords(group: FormGroup) {

@@ -60,6 +60,7 @@ export class CadUsuarioComponent implements OnInit {
   senha="";
   senhaAntiga="";
   pwdCripto="";
+  pwdForm="";
   
   todasFiliais: Filial[] = [];
 
@@ -203,7 +204,8 @@ export class CadUsuarioComponent implements OnInit {
     this.usersService.getUsers().pipe(takeUntil(this.unsubscribe$)).subscribe((usrs) => this.aUsers = usrs); 
     this.usersService.getGrupos().pipe(takeUntil(this.unsubscribe$)).subscribe((grps) => this.aGrupo = grps); 
     this.filUserService.getUsuarioFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.filial.filiais = filiais); 
-    this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais); 
+    //this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais); 
+    this.loginService.cripto ('', '').subscribe();
 /*
     this.loginService.cripto ('1', '1').subscribe({
       next: (res) => {
@@ -257,19 +259,27 @@ export class CadUsuarioComponent implements OnInit {
 
     console.log('Carrega Filiais');
 
-    this.filService.getFilial().subscribe((filiais) => this.vFiliaisUsu = filiais); 
+     
+    this.filService.atualizaFilial().subscribe((filiais) => this.vFiliaisUsu = filiais); 
        
   }
    
   openSnackBar(msg:string) {
     //this._snackBar.open(msg); 
     this._snackBar.openFromComponent(SnackExemploComponent, {
-      duration: 1000,verticalPosition: 'bottom', // Allowed values are  'top' | 'bottom'
+      duration: 1000,verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
       horizontalPosition: 'center'
     }
     );
   };
  
+
+  cript(){
+
+
+
+  }
+
 
   save() { 
     
@@ -284,7 +294,7 @@ export class CadUsuarioComponent implements OnInit {
          if(this.aGrupoGrava[i].id !==0) {
              this.aCodGrupos.push(this.aGrupoGrava[i].id.toString());
          }
-        console.log("Descricao: " + this.aGrupoGrava[i].descricao);
+        //console.log("Descricao: " + this.aGrupoGrava[i].descricao);
         i++;
 
     } 
@@ -302,59 +312,75 @@ export class CadUsuarioComponent implements OnInit {
     if ( this.onAlt || !this.vExcluir) {   
  
    
-      if (this.senhaAntiga == this.userForm.get('vPwd')?.value){
-            this.senha = this.senhaAntiga; 
-      }
-      else{
-            this.senha = this.userForm.get('vPwd')?.value;  
-            this.senhaAntiga = this.senha ;
-      }
+        if (this.senhaAntiga == this.userForm.get('vPwd')?.value){
+              this.senha = this.senhaAntiga; 
 
-      i=0;      
-      //this.pwdCripto = ""; 
+              this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.senha,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
+              console.log(this.userGrava); 
 
-     // while ((this.pwdCripto == "")  && (i < 3)) {
+              this.usersService.update(this.userGrava)
+        
+                .subscribe(
+                  (usr) => { 
+                    console.log(usr);   
+                    //console.log(this.vId);        
 
-            this.loginService.cripto (this.userForm.get('vEmail')?.value, this.senha).subscribe({
-              next: (res) => {
-                if (res) {
-                      console.log('Cripto >> ' + res.senha); 
-                      this.pwdCripto = res.senha; 
-                }
-              }, error: err => {
-                if (err != null  ) {
-                  console.log('Erro criptografando senha');
-                }
-              }
-            });  
+                  },
+                  (err) => {
+                    console.log('Error no WebService');    
+                    //console.error(err);
+                  });    
 
-            i++;
-            console.log(i);
-            console.log("Cripto Grava >> " + this.pwdCripto);
-             
-    //}
+        }
+        else{
+
+
+              this.loginService.cripto (this.userForm.get('vEmail')?.value, this.userForm.get('vPwd')?.value).subscribe({
+                next: (res) => {
+                  if (res) {
+                        console.log('Cripto >> ' + res.senha); 
+                        this.pwdCripto = res.senha;   
+                        this.vPwd = this.pwdCripto;
+                        this.senha = this.pwdCripto;
+                        this.senhaAntiga = this.pwdCripto;                      
+                        console.log('vpwd >> ' + this.vPwd); 
+
+
+
+                              //this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.userForm.get('vPwd')?.value,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
+                              this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.pwdCripto,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
+                              console.log(this.userGrava); 
+
       
+                              this.usersService.update(this.userGrava)
+                        
+                                .subscribe(
+                                  (usr) => { 
+                                    console.log(usr);   
+                                    //console.log(this.vId);        
       
-      console.log('Altera');
-      console.log('Senha >> ' + this.senha);
-      console.log('Senha Cripto 123 >> ' + this.pwdCripto);
+                                  },
+                                  (err) => {
+                                    console.log('Error no WebService');    
+                                    //console.error(err);
+                                  });      
+      
+                  }
+                }, error: err => {
+                  if (err != null  ) {
+                    console.log('Erro criptografando senha');
+                  }
+                }
+              });  
+          
+              console.log('Altera');
+              console.log('Senha >> ' + this.senha);
+              console.log('Senha Cripto 123 >> ' + this.pwdCripto); 
+  
 
-      //this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.userForm.get('vPwd')?.value,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
-      this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,id:this.vId,nome: this.userForm.get('vNome')?.value,senha:this.pwdCripto,email:this.userForm.get('vEmail')?.value,tel:"999",filpad:this.userForm.get('vFilialPad')?.value } ;
-      console.log(this.userGrava); 
+        } 
 
-      this.usersService.update(this.userGrava)
- 
-        .subscribe(
-          (usr) => { 
-            console.log(usr);   
-            //console.log(this.vId);        
 
-          },
-          (err) => {
-            console.log('Error no WebService');    
-            //console.error(err);
-          }); 
     
     }
   
@@ -377,6 +403,22 @@ export class CadUsuarioComponent implements OnInit {
           if (res) {
                 console.log( res); 
                 this.pwdCripto = res.senha; 
+
+                console.log('Senha Cripto >> ' + this.pwdCripto);   
+
+                this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,"id":0,"nome": this.userForm.get('vNome')?.value,"senha":this.pwdCripto,"email":this.userForm.get('vEmail')?.value,"tel":"999","filpad":this.userForm.get('vFilialPad')?.value };      
+          
+                this.usersService.addPost(this.userGrava)
+                  .subscribe(
+                    (usr) => { 
+                    
+                      console.log('Updated addPOST!');            
+                    },
+                    (err) => {
+                      console.log('Error no WebService');    
+                      //console.error(err);
+                    });   
+
           }
         }, error: err => {
           if (err != null  ) {
@@ -385,20 +427,7 @@ export class CadUsuarioComponent implements OnInit {
         }
       });   
 
-      console.log('Senha Cripto >> ' + this.pwdCripto);   
 
-      this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,"id":0,"nome": this.userForm.get('vNome')?.value,"senha":this.pwdCripto,"email":this.userForm.get('vEmail')?.value,"tel":"999","filpad":this.userForm.get('vFilialPad')?.value };      
-
-      this.usersService.addPost(this.userGrava)
-        .subscribe(
-          (usr) => { 
-          
-            console.log('Updated addPOST!');            
-          },
-          (err) => {
-            console.log('Error no WebService');    
-            //console.error(err);
-          });  
      
   }
   this.pMsg="Registro gravado com sucesso!";
@@ -546,7 +575,12 @@ export class CadUsuarioComponent implements OnInit {
         console.log('GFiliaisUsuarioById'); 
         console.log(this.filial.filiais);           
     },
-    (err) => console.error(err)) ;   
+    (err) => console.error(err)) ;    
+
+   
+    this.filService.atualizaFilial().subscribe((filiais) => this.vFiliaisUsu = filiais); 
+
+
  
    } 
 
