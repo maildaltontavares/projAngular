@@ -70,8 +70,8 @@ export class UserService {
         .pipe(
                map(
                     (res) => {  
-                              this.userSubject$.getValue().push(d);
-                              this.atualizaUsers();   
+                              //this.userSubject$.getValue().push(d);
+                              //this.atualizaUsers();   
                              }
                   )
              ); 
@@ -135,10 +135,10 @@ export class UserService {
   
       .pipe( 
         tap((d)=> {
-          let usrs = this.userSubject$.getValue();
-          let i = usrs.findIndex(d => d.id === pId);
-          if (i>=0)
-          usrs.splice(i,1);
+          //let usrs = this.userSubject$.getValue();
+          //let i = usrs.findIndex(d => d.id === pId);
+          //if (i>=0)
+          //usrs.splice(i,1);
         }
       ))
   }

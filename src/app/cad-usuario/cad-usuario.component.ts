@@ -84,16 +84,7 @@ export class CadUsuarioComponent implements OnInit {
   
  
   selected = 'Santana'; 
-  vFiliaisUsu:FilialUsuario[]=[];
-  /*
-    {id:1,nome:  'Santana'},
-    {id:2,nome:  'Nortex'},    
-    {id:8,nome:  'Textiles'}    
-  
-  ]; 
-*/
-  //aCodFilial: Filial=;
- 
+  vFiliaisUsu:FilialUsuario[]=[]; 
   vNum: string="";
 
 
@@ -201,25 +192,20 @@ export class CadUsuarioComponent implements OnInit {
   configura(): void { 
 
     console.log('Configura'); 
-    this.usersService.getUsers().pipe(takeUntil(this.unsubscribe$)).subscribe((usrs) => this.aUsers = usrs); 
+    //this.usersService.getUsers().pipe(takeUntil(this.unsubscribe$)).subscribe((usrs) => this.aUsers = usrs); 
+
+    this.usersService.atualizaUsers().subscribe( 
+      (usrs) => { 
+          this.aUsers = usrs;
+      }
+      //,
+      //(err) => console.error(err)
+      ) ; 
+
     this.usersService.getGrupos().pipe(takeUntil(this.unsubscribe$)).subscribe((grps) => this.aGrupo = grps); 
     this.filUserService.getUsuarioFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.filial.filiais = filiais); 
-    //this.filService.getFilial().pipe(takeUntil(this.unsubscribe$)).subscribe((filiais) => this.vFiliaisUsu = filiais); 
-    this.loginService.cripto ('', '').subscribe();
-/*
-    this.loginService.cripto ('1', '1').subscribe({
-      next: (res) => {
-        if (res) {
-              console.log('Cripto >> ' + res.senha); 
-              this.pwdCripto = ""; 
-        }
-      }, error: err => {
-        if (err != null  ) {
-          console.log('Erro criptografando senha');
-        }
-      }
-    });    
- */
+ 
+ 
   
   }
 
@@ -272,13 +258,7 @@ export class CadUsuarioComponent implements OnInit {
     }
     );
   };
- 
-
-  cript(){
-
-
-
-  }
+  
 
 
   save() { 
@@ -305,9 +285,7 @@ export class CadUsuarioComponent implements OnInit {
 
     i=0; 
 
-    this.aCodFilial.filiais=this.filial.filiais;
-   // console.log('this.aCodFilial.filiais');
-   // console.log(this.aCodFilial.filiais );  
+    this.aCodFilial.filiais=this.filial.filiais; 
 
     if ( this.onAlt || !this.vExcluir) {   
  
@@ -382,10 +360,7 @@ export class CadUsuarioComponent implements OnInit {
 
 
     
-    }
-  
-    //this.userGrava = {filiais:this.aCodFilial,grupos:this.aCodGrupos ,"id":0,"nome": this.userForm.get('vNome')?.value,"senha":this.userForm.get('vPwd')?.value,"email":this.userForm.get('vEmail')?.value,"tel":"999","filpad":this.userForm.get('vFilialPad')?.value };
-    //console.log(this.userGrava); 
+    } 
 
     //Inclusão
     if( this.onAdd) {
